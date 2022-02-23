@@ -1,50 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./main.css"/>
-
-  <title>Document</title>
-  <script defer src="./main.js"></script>
-</head>
-</head>
-<body>
-  <div class="list-container">
-    
-    <header>
-        <form id="list-form">
-            
-            <div class="list-form__add-item">
-                <input type="text" id="add-item__input" required autofocus>
-                <input type="submit" value="✚">
-            </div>
-            
-            <div class="list-form__search-item">
-                <input type="search" id="search-item__input">
-                <label for="search-item__input">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </label>
-            </div>
-            
-        </form>
-    </header>
-    
-    <section>
-        <ul class="to-do-list"></ul>
-        
-        <hr>
-        
-        <ul class="finished-list"></ul>
-    </section>
-    
-    <div class="text-center">
-        <a href="https://github.com/EastSun5566" target="_blank">
-            <i class="fa fa-github" aria-hidden="true"></i>
-        </a>
-    </div>
-    
-</div>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vanilla Todo</title>
+        <link rel="stylesheet" href="main.css" />
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="todo-header" class="todo">To do list (0)</div>
+            <div id="todo-list" style="height: 235px"></div>
+            <div id="done-header" class="done">Done list (0)</div>
+            <div id="done-list" style="height: 225px"></div>
+            <form class="input-box">
+                <input type="text" placeholder="what do you want to do?" />
+                <input type="submit" class="todo-button" value="enter" />
+            </form>
+        </div>
+    </body>
 </html>

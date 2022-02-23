@@ -1,248 +1,112 @@
-@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
-
-* {
-/*  border: 1px solid #000; */
-    position: relative;
-    box-sizing: border-box;
+html,
+body {
+    margin: 0;
 }
 
-:root {
-    --color-primary: #d3cce3;
-    --color-secondary: chocolate;
-    --color-font-dark: darkred;
-    --color-font-light: #eee;
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    background: radial-gradient(circle, #e9e4f0, var(--color-primary));
-    color: var(--color-font-dark);
-    letter-spacing: 2px;
-    font-family: 'Noto Sans TC', sans-serif;
-    
+    width: 100vw;
+    height: 100vh;
+
+    /* Center Container */
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;    
+
+    /* Coloring */
+    background: #2ec1ac;
 }
 
-/* list container */
-.list-container {
-    width: 60%;
-    padding: 16px 0;
+input,
+button,
+ul,
+p {
+    all: unset;
 }
 
-@media (max-width: 500px) {
-    .list-container {
-        width: 100%;
-    }
-}
+.container {
+    width: 350px;
+    height: 600px;
 
-/* form */
-#list-form {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: stretch;
+
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+    background: white;
 }
 
-.list-form__add-item, 
-.list-form__search-item {
-    width: 45%;
-}
-
-input {
-    background-color: transparent;
-    border: 2px solid var(--color-secondary);
-    border-radius: 100px;
-    padding: 16px;
-    
-    text-indent: 8px;
-    color: var(--color-font-dark);
-    letter-spacing: 2px;
-    
-    transition: 0.5s;
-}
-
-input:focus {
-    outline: none;
-}
-
-/* add input */
-input[type=text],
-input[type=search] {
-    width: 100%;    
-}
-
-#add-item__input:focus,
-#search-item__input:focus {
-    background-color: var(--color-secondary);
-    color: var(--color-font-light);
-}
-
-input[type=text] {
-    padding-right: 40px;
-}
-
-input[type=submit] {
-    border: none;
-    font-size: 16px;
-    
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-/* serch input */
-input[type=search] {
-    text-indent: 24px;
-}
-
-label[for=search-item__input] {
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-#add-item__input:focus + input[type=submit], 
-#search-item__input:focus + label[for=search-item__input]{
-    color: var(--color-font-light);
-}
-
-/* list */
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-/* to do list */
-.to-do-list:empty::before {
-    content: 'Nothing to do...';
-    display: block;
+.todo-button {
+    width: 50px;
+    display: inline-block;
+    background-color: #16a085;
+    border-radius: 13px;
+    color: white;
+    margin-top: 4px;
+    padding: 2px;
+    font-weight: 600;
     text-align: center;
-    
-    font-size: 12px;
-    font-weight: lighter;
+    transition-duration: 0.4s;
+}
+.todo-button:hover {
+    background-color: rgb#082a4d;
+    color: red;
+}
+.todo-button:active {
+    background-color: rgb(99, 187, 187);
+}
+.todo-button:visited {
+    background-color: #16a085;
+    color: white;
 }
 
-/* finished list */
-.finished-list:empty::before {
-    content: 'Nothing finished...';
-    display: block;
-    text-align: center;
-    
-    font-size: 12px;
-    font-weight: lighter;
-}
-
-li {
-    border: 1.5px solid transparent;
-    border-radius: 100px;
-    margin: 8px;
-    padding: 8px;
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+#todo-header,
+#done-header,
+#todo-list,
+#done-list {
+    width: 350px;
+    margin-bottom: 1px;
+    font: 1.25rem 'Fira Sans', sans-serif;
     font-weight: bold;
-    
-    transition: 0.5s;
-/*  animation: fadeIn 0.5s both; */
+    padding: 10px 15px;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+#todo-list,
+#done-list {
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
-li:hover {
-/*  border-color: var(--color-secondary); */
+.todolist-content {
+    font: 0.9rem 'Fira Sans', sans-serif;
+    font-weight: 600;
+    display: inline-block;
+    width: 275px;
 }
 
-.item__content {
-    max-width: 80%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* item action */
-.item__action {
-    width: 20%;
+.input-box {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* check input */
-input[type="checkbox"] {
-    appearance: none;
-    padding: 8px;
-
-    transition: 0.3s;
-    cursor: pointer;
-}
-
-input[type=checkbox]:checked,
-input[type=checkbox]:hover {
-    background-color: var(--color-secondary);
-}
-
-input[type=checkbox]:checked::after {
-    content: '✔';
-    position: absolute;
-    top: 50%;
-    left: 35%;
-    transform: translate(-50%, -50%);
-    
-    color: #eee;
-    font-weight: bold;
-}
-
-.fa-trash {
-    display: block;
-    cursor: pointer;
-    
-    transition: 0.3s 0.1s;
-}
-
-.fa-trash::after {
-    content: '';
-    position: absolute;
-    right: -10px;
-    width: 3px;
-    height: 100%;
-    
-    background-color: var(--color-secondary);
-    z-index: -1;
-    
-    transition: 0.3s;
-}
-
-.fa-trash:hover {
-    color: var(--color-font-light);
-}
-
-.fa-trash:hover::after {
-    width: 200%;
-}
-
-/* hr */
-hr {
-    width: 80%;
-    border: 1px solid var(--color-secondary);
-    opacity: 0.5;
-}
-
-.text-center {
+    margin-top: 2px;
+    display: inline-block;
     text-align: center;
+}
+.input-box > input[type='text'] {
+    width: 250px;
+    border: 2px solid rgb(134, 233, 216);
+    font-size: 1rem 'FiraSans';
+    font-weight: 600;
+    padding: 3px;
+    border-radius: 5px;
+}
+.input-box > input[type='submit'] {
+    padding-bottom: 5px;
+}
+
+.delete-image {
+    width: 1rem;
+    height: 1rem;
 }
