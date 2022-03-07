@@ -1,19 +1,48 @@
-const todoListForm = document.querySelector('.input-box'); // 할 것 제출
-const InputContent = document.querySelector('input'); // 추가 할 내용
+const todoListForm = document.querySelector('.input-box');
+const inputText = document.querySelector('input');
+const todoList = document.querySelector('#todo-list')
+const doneList = document.querySelector('#done-list')
+
+function init() {
+    todoListForm.addEventListener('submit', creatTodo);
+}
+
+function creatTodo(event) {
+    event.preventDefault()
+    const todo = inputText.value;
+    if (todo) {
+        writeTodo(todo);
+        inputText.value = "";
+    }
+}
+
+function writeTodo(todo) {
+    // const li = document.createElement('li');
+    const li = document.createElement('li')
+    const span = document.createElement('span');
+    const check = document.createElement('input');
+    check.setAttribute('type','checkbox');
+    check.setAttribute('id','toDoCheck')
+    // li.appendChild(div)
+    li.appendChild(span)
+    li.appendChild(check)
+    span.textContent = todo
+    todoList.appendChild(li)
+    check.addEventListener('click', toDoCheck)
+}
 
 
-todoListForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (InputContent.value) {
-        // InputContent.value에 내용이 담겼으면
-        const todo = document.createElement('div');
-        const todoContent = document.createElement('span');
-        todoContent.textContent = InputContent.value;
-        // div 안 todoContent에 input 내용을 넣어줌
-        todoContent.classList.add('todolist-content');
-        todo.append(todoContent);
+function toDoCheck(event) {
+    event.preventDefault()
+    const checkBox = event.target.parentNode;
+    const check = event.target
+    doneList.appendChild(checkBox)
+    check.addEventListener('click', toDoDelete);
+}
 
-        todoContent.addEventListener('dblclick',
-
-
-        not yet ...
+function toDoDelete(event) {
+    event.preventDefault()
+    const checkBox = event.target.parentNode;
+    checkBox.remove();
+}
+init();
